@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Print Estimator API</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="mb-4">3D Print Estimator API</h1>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">API Endpoint</h2>
+                <code class="d-block mb-3">POST /estimate</code>
+                <p>Upload an STL file to get estimated build time and material usage.</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Request Format</h2>
+                <p>Send a multipart form data request with the following parameter:</p>
+                <ul>
+                    <li><code>file</code>: STL file (max size: 16MB)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Response Format</h2>
+                <pre><code>{
+    "success": true,
+    "estimates": {
+        "build_time_minutes": float,
+        "material_usage_grams": float,
+        "estimated_cost": float
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">Try It Out</h2>
+                <form id="uploadForm" class="mb-3">
+                    <div class="mb-3">
+                        <label for="stlFile" class="form-label">Select STL File</label>
+                        <input type="file" class="form-control" id="stlFile" accept=".stl" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Get Estimate</button>
+                </form>
+                <div id="result" class="d-none">
+                    <h3>Results:</h3>
+                    <pre class="bg-dark p-3 rounded"><code id="resultContent"></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
